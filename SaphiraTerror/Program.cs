@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using SaphiraTerror.Data;
+using SaphiraTerror.Interfaces;
+using SaphiraTerror.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +10,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<SaphiraTerrorDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Add services to the container.
+//repositorios
+builder.Services.AddScoped<IFilmeRepository, FilmeRepository>();
+builder.Services.AddScoped<IGeneroRepository, GeneroRepository>();
+builder.Services.AddScoped<IClassificacaoRepository, ClassificacaoRepository>();
+builder.Services.AddScoped<IUsuarioRepository, IUsuarioRepository>();
+builder.Services.AddScoped<ITipoUsuarioRepository, TipoUsuarioRepository>();
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
