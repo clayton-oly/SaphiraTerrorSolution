@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SaphiraTerror.Interfaces;
+using SaphiraTerror.Models;
 using SaphiraTerror.ViewModels;
 
 namespace SaphiraTerror.Controllers
@@ -67,7 +68,33 @@ namespace SaphiraTerror.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(FilmeViewModel viewModel)
         {
-            return RedirectToAction(nameof(Index));
+            if (ModelState.IsValid) 
+            {
+                string caminhoImagem = null;
+                if (viewModel.ImagemUpload != null) 
+                {
+                    var nomeArquivo = Guid.NewGuid().ToString()+Path.GetExtension(viewModel.ImagemUpload.FileName);
+                    var caminho = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img", nomeArquivo);
+                    var stream = new FileStream(caminho, FileMode.Create);
+                    await viewModel.ImagemUpload.CopyToAsync(stream);
+                    caminhoImagem = "img/" + nomeArquivo;
+                }
+
+                var filme = new Filme
+                {
+                    Titulo = viewModel.TituloFilmeViewModel,
+                    Produtora = viewModel.ProdutoraFilmeViewModel,
+                    GeneroId = viewModel.GeneroIdFilmeViewModel,
+                    ClassificacaoId = viewModel.ClassificacaoIdFilmeViewModel,
+                    UrlImagem = viewModel.UrlImagemFilmeViewModel
+                };
+
+                await _filmeRepository.AddAsync(filme);
+                return RedirectToAction(nameof(Index));
+            }
+
+            viewModel = await CriarFilmeViewModel(viewModel);
+            return View(viewModel);
         }
     }
 }
