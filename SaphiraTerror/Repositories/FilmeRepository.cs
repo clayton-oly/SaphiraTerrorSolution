@@ -6,7 +6,7 @@ using SaphiraTerror.Models;
 namespace SaphiraTerror.Repositories
 {
     public class FilmeRepository : IFilmeRepository
-    {  
+    {
         //campo de apoio
         private readonly SaphiraTerrorDbContext _context;
 
@@ -27,7 +27,7 @@ namespace SaphiraTerror.Repositories
         public async Task DeleteAsync(int id)
         {
             var filme = await _context.Filmes.FirstOrDefaultAsync(f => f.IdFilme == id);
-            if (filme != null) 
+            if (filme != null)
             {
                 _context.Filmes.Remove(filme);
                 await _context.SaveChangesAsync();
@@ -37,17 +37,13 @@ namespace SaphiraTerror.Repositories
         //listar todos os filmes
         public async Task<List<Filme>> GetAllAsync()
         {
-            return await _context.Filmes.Include(f => f.Genero)
-                                        .Include(f => f.Classificacao)
-                                        .ToListAsync();
+            return await _context.Filmes.Include(f => f.Genero).Include(f => f.Classificacao).ToListAsync();
         }
 
         //buscar por id
         public async Task<Filme> GetByIdAsync(int id)
         {
-            return await _context.Filmes.Include(f => f.Genero)
-                                        .Include(f => f.Classificacao)
-                                        .FirstOrDefaultAsync(f => f.IdFilme == id);
+            return await _context.Filmes.Include(f => f.Genero).Include(f => f.Classificacao).FirstOrDefaultAsync(f => f.IdFilme == id);
         }
 
         //editar filme

@@ -8,7 +8,6 @@ namespace SaphiraTerror.Models
     {
         [Key]
         public int IdTipoUsuario { get; set; }
-
         [Required(ErrorMessage = "Campo obrigatório!")]
         [Display(Name = "Tipo de Usuário")]
         [StringLength(150)]

@@ -10,11 +10,12 @@ namespace SaphiraTerror.Repositories
         //campo de apoio
         private readonly SaphiraTerrorDbContext _context;
 
-        //injeção de dependencia no construtor
-        public GeneroRepository(SaphiraTerrorDbContext context) 
+        //injeção de dependência no construtor
+        public GeneroRepository(SaphiraTerrorDbContext context)
         {
             _context = context;
         }
+
         public Task AddAsync(Genero genero)
         {
             throw new NotImplementedException();
@@ -28,9 +29,10 @@ namespace SaphiraTerror.Repositories
         //todos os generos
         public async Task<List<Genero>> GetAllAsync()
         {
-            return await _context.Generos.ToListAsync();
+            return await _context.Classificacao.ToListAsync();
         }
 
+        
         public Task<Genero> GetByIdAsync(int id)
         {
             throw new NotImplementedException();

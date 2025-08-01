@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Numerics;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.FileProviders;
 
 namespace SaphiraTerror.ViewModels
@@ -15,11 +13,9 @@ namespace SaphiraTerror.ViewModels
         public IFormFile? ImagemUpload { get; set; }
 
         public int ClassificacaoIdFilmeViewModel { get; set; }
-        public int GeneroIdFilmeViewModel { get; set; }
-       
-        //lista para popular os dropdown
-        public IEnumerable<SelectListItem>? Classificacoes {  get; set; }
-        public IEnumerable<SelectListItem>? Generos { get; set; }
+        public int GeneroIdFilmeModel { get; set; }
 
+        public IEnumerable<SelectListItem>? Classificacoes { get; set; }
+        public IEnumerable<SelectListItem>? Generos { get; set; }
     }
 }
