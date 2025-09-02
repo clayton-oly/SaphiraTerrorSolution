@@ -29,9 +29,8 @@ namespace SaphiraTerror.Repositories
         //todos os generos
         public async Task<List<Genero>> GetAllAsync()
         {
-            return await _context.Classificacao.ToListAsync();
+            return await _context.Generos.ToListAsync();
         }
-
         
         public Task<Genero> GetByIdAsync(int id)
         {

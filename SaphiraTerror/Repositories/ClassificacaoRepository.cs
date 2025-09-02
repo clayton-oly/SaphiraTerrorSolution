@@ -15,30 +15,37 @@ namespace SaphiraTerror.Repositories
             _context = context;
         }
 
-        
-        public Task AddAsync(Classificacao classificacao)
+        public async Task AddAsync(Classificacao classificacao)
         {
-            throw new NotImplementedException();
+            _context.Classificacoes.Add(classificacao);
+            await _context.SaveChangesAsync();
         }
 
-        public Task DeleteAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
         //listar todas as classificações
         public async Task<List<Classificacao>> GetAllAsync()
         {
-            return await _context.Classificacoes.ToListAsync();
+            return await _context.Classificacoes.Include(c => c.Filmes).ToListAsync();
         }
 
-        public Task<Classificacao> GetByIdAsync(int id)
+        public async Task<Classificacao> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Classificacoes.Include(c => c.Filmes).FirstOrDefaultAsync(c => c.IdClassificacao == id);
         }
 
-        public Task UpdateAsync(Classificacao classificacao)
+        public async Task UpdateAsync(Classificacao classificacao)
         {
-            throw new NotImplementedException();
+            _context.Classificacoes.Update(classificacao);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            var classificacao = await _context.Classificacoes.FindAsync(id);
+            if (classificacao != null)
+            {
+                _context.Classificacoes.Remove(classificacao);
+                _context.SaveChanges();
+            }
         }
     }
 }
