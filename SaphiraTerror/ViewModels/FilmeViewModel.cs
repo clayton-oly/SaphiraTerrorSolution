@@ -1,20 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.Extensions.FileProviders;
 
 namespace SaphiraTerror.ViewModels
 {
     public class FilmeViewModel
     {
-        public int IdFilmeViewModel { get; set; }
-        public string TituloFilmeViewModel { get; set; }
-        public string ProdutoraFilmeViewModel { get; set; }
-        public string UrlImagemFilmeViewModel { get; set; }
-
+        public int IdFilme { get; set; }
+        public string TituloFilme { get; set; }
+        public string ProdutoraFilme { get; set; }
+        public string? UrlImagem { get; set; }
         public IFormFile? ImagemUpload { get; set; }
+        public int ClassificacaoId { get; set; }
+        public int GeneroId { get; set; }
 
-        public int ClassificacaoIdFilmeViewModel { get; set; }
-        public int GeneroIdFilmeModel { get; set; }
-
+        //Coleção para popular o dropdown
         public IEnumerable<SelectListItem>? Classificacoes { get; set; }
         public IEnumerable<SelectListItem>? Generos { get; set; }
     }

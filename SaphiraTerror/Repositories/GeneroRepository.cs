@@ -16,30 +16,38 @@ namespace SaphiraTerror.Repositories
             _context = context;
         }
 
-        public Task AddAsync(Genero genero)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task DeleteAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        //todos os generos
+        //implementar somente este metodo
         public async Task<List<Genero>> GetAllAsync()
         {
             return await _context.Generos.ToListAsync();
         }
-        
-        public Task<Genero> GetByIdAsync(int id)
+
+        //stand by
+        public async Task AddAsync(Genero genero)
         {
-            throw new NotImplementedException();
+            await _context.Generos.AddAsync(genero);
+            await _context.SaveChangesAsync();
         }
 
-        public Task UpdateAsync(Genero genero)
+        public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var genero = await _context.Generos.FindAsync(id);
+            if (genero != null)
+            {
+                _context.Generos.Remove(genero);
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task<Genero> GetByIdAsync(int id)
+        {
+            return await _context.Generos.FirstOrDefaultAsync(g => g.IdGenero == id);
+        }
+
+        public async Task UpdateAsync(Genero genero)
+        {
+            _context.Generos.Update(genero);
+            await _context.SaveChangesAsync();
         }
     }
 }

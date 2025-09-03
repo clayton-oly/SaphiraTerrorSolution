@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SaphiraTerror.Models;
-using System.Collections.Generic;
 
 namespace SaphiraTerror.Data
 {
