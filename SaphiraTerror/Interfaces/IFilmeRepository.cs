@@ -5,6 +5,8 @@ namespace SaphiraTerror.Interfaces
     public interface IFilmeRepository
     {
         Task<List<Filme>> GetAllAsync();
+        Task<List<Filme>> GetByIdGeneroAsync(int id);
+        Task<List<Filme>> GetByTituloAsync(string titulo);
         Task<Filme> GetByIdAsync(int id);
         Task AddAsync(Filme filme);
         Task UpdateAsync(Filme filme);
