@@ -95,4 +95,26 @@ $(document).ready(function () {
             }
         });
     }
+
+    //Busca por título. Quando teclar algo na caixa de busca
+    $('#busca-filme').on('keyup', function () {
+
+        // Pega o valor do campo de busca e converte para minúsculas
+        const termoBusca = $(this).val().toLowerCase();
+
+        // Percorrer cada div de filme na div 'filmes-container'
+        $('#filmes-container div').each(function () {
+            // Pega o texto do título do filme
+            const tituloFilme = $(this).find('.card-title').text().toLowerCase();
+
+            // Verifica se o título do filme inclui o termo de busca
+            if (tituloFilme.includes(termoBusca)) {
+                // Se sim, mostra o card
+                $(this).show();
+            } else {
+                // Se não, oculta o card
+                $(this).hide();
+            }
+        });
+    });
 });
