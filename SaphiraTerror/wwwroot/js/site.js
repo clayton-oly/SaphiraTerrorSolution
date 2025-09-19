@@ -117,4 +117,43 @@ $(document).ready(function () {
             }
         });
     });
+
+    //Envio do Formulário
+    $('#form-contact').submit(function (event) {
+
+        // Evita que o formulário recarregue a página
+        event.preventDefault();
+
+        //monta o json de envio
+        let dadosEmail = {
+            nomeRemetente: $('#nome').val(),
+            emailRemetente: $('#emailRemetente').val(),
+            telefone: $('#telefone').val(),
+            assunto: $('#assunto').val(),
+            mensagem: $('#mensagem').val(),
+        }
+
+        console.log(dadosEmail);
+
+        //envia os dados para api de email
+        $.ajax({
+            url: urlBase + "/Email",
+            type: "POST",
+            contentType: 'application/json',
+            data: JSON.stringify(dadosEmail), //Dados (json)
+            success: function (dados) {
+                alert('E-mail enviado com sucesso!');
+                //limpa os campos
+                $('#nome').val(''),
+                    $('#emailRemetente').val(''),
+                    $('#telefone').val(''),
+                    $('#assunto').val(''),
+                    $('#mensagem').val('')
+            },
+            error: function (erro) {
+                console.log("Ocorreu um erro ao enviar o e-mail.")
+            }
+        });
+    });
+
 });

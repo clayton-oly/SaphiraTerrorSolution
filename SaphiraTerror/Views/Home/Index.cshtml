@@ -136,8 +136,44 @@
         </div>
     </section>
 
+    <!-- CONTACT -->
+    <section id="contact" class="py-5 bg-dark text-light">
+        <div class="container">
+            <h2 class="text-center mb-4">Contato</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <form id="form-contact" class="border rounded p-3 bg-black">
+                        <div class="mb-3">
+                            <label for="nome" class="form-label">Nome</label>
+                            <input id="nome" name="nome" type="text" class="form-control" required />
+                        </div>
 
+                        <div class="mb-3">
+                            <label for="emailRemetente" class="form-label">Email</label>
+                            <input id="emailRemetente" name="emailRemetente" type="email" class="form-control" required />
+                        </div>
 
+                        <div class="mb-3">
+                            <label for="telefone" class="form-label">Telefone</label>
+                            <input id="telefone" name="telefone" type="text" class="form-control" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="assunto" class="form-label">Assunto</label>
+                            <input id="assunto" name="assunto" type="text" class="form-control" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="mensagem" class="form-label">Mensagem</label>
+                            <textarea id="mensagem" name="mensagem" class="form-control" required></textarea>
+                        </div>
+
+                        <button type="submit" id="BtnEnviar" class="btn btn-danger w-100">Enviar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- RESTRICT -->
     <section id="restrict" class="py-5 bg-dark text-light">
