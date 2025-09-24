@@ -21,7 +21,7 @@ namespace SaphiraTerror.API.Services
             MailMessage message = new MailMessage();
 
             //remetente
-            message.From = new MailAddress(email.EmailRementente, email.NomeRemetente);
+            message.From = new MailAddress(email.EmailRemetente, email.NomeRemetente);
 
             //destinatario 
             message.To.Add(new MailAddress(_configuration["EmailSettings:FromEMail"], _configuration["EmailSetting:FromName"]));
