@@ -17,7 +17,7 @@ builder.Services.AddScoped<IGeneroRepository, GeneroRepository>();
 
 //services
 builder.Services.AddScoped<IEmailService, EmailService>();
-
+//
 //configuração do CORS
 //não esquecer de colocar enbableCors as controllers
 builder.Services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
